@@ -1,5 +1,5 @@
 import '@/app/globals.css';
-import Homepage from '@/app/pages/home';
+import Homepage from '@/app/home/page';
 
 export default function Home({ Component, pageProps }) {
   return (

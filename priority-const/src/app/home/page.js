@@ -13,12 +13,12 @@ const HomePage = () => {
                 </div>
             </div>
             <div className="w-full h-[90px] bg-[#f7f4ee]"/>
-            <div className="w-full h-[115px] bg-white grid text-center place-items-center">
+            <div className="w-full h-[115px] bg-white grid text-center place-items-center" id="about">
                 <h1 className="text-black text-4xl font-bold">ABOUT US</h1>
             </div>
             <div className="w-full h-[310px] bg-[#f7f4ee] grid grid-cols-1 sm:grid-cols-12">
                 <div className="col-span-6 place-self-center sm:text-left"> 
-                    <h1 className="text-white mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
+                    <h1 className="mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
                         <span className="text-black bg-clip-text"> 
                             Our Service
                         </span>
@@ -31,7 +31,7 @@ const HomePage = () => {
                     </p>
                 </div>
                 <div className="col-span-6 place-self-center sm:text-left"> 
-                    <h1 className="text-white mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
+                    <h1 className="mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
                         <span className="text-black bg-clip-text"> 
                             Our Mission
                         </span>
@@ -43,12 +43,12 @@ const HomePage = () => {
                     </p>
                 </div>
             </div>
-            <div className="w-full h-[115px] bg-white grid text-center place-items-center">
+            <div className="w-full h-[115px] bg-white grid text-center place-items-center" id="history">
                 <h1 className="text-black text-4xl font-bold">OUR HISTORY</h1>
             </div>
             <div className="w-full h-[350px] bg-[#f7f4ee] grid grid-cols-1 sm:grid-cols-12">
                 <div className="col-span-6 place-self-center sm:text-left"> 
-                    <h1 className="text-white mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
+                    <h1 className="mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
                         <span className="text-black bg-clip-text"> 
                             Latest Project
                         </span>
@@ -60,7 +60,7 @@ const HomePage = () => {
                     </p>
                 </div>
                 <div className="col-span-6 place-self-center sm:text-left"> 
-                    <h1 className="text-white mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
+                    <h1 className="mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
                         <span className="text-black bg-clip-text"> 
                             Our Goal
                         </span>

@@ -9,15 +9,23 @@ import OpenMenu from "./OpenMenu"
 const navLinks = [
     {
       title: "Home",
-      path: "#home",
+      path: "/",
+    },
+    {
+        title: "About Us",
+        path: "/#about",
+    },
+    {
+        title: "Our History",
+        path: "/#history",
     },
     {
         title: "Project",
-        path: "#project",
+        path: "/project",
     },
     {
         title: "Contact",
-        path: "#contact",
+        path: "/contact",
     },
 ]
 
@@ -72,14 +80,12 @@ const Navbar = () => {
                 }
                 </div>
                 <div className="menu hidden md:block md:w-auto" id="navbar">
-                    <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0 font-bold">
-                        {
-                            navLinks.map((link, index) => (
-                                <li key={index}>
-                                    <NavLink href={link.path} title={link.title}/>
-                                </li>
-                            ))
-                        }
+                    <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0 text-xl font-bold">
+                        {navLinks.map(link => (
+                            <Link href={link.path} key={link.title}>
+                                {link.title}
+                            </Link>
+                        ))}
                     </ul>
                 </div>
             </div>
