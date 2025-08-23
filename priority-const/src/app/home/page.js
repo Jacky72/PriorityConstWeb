@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import Carousel from "@/app/components/carousel/Carousel";
+import Achievement from '../components/achievement/achievement';
 import Image from 'next/image';
 
 const HomePage = () => {
@@ -12,7 +13,7 @@ const HomePage = () => {
                     <h1 className="heading-font text-3xl md:text-7xl font-extrabold italic underline underline-offset-5 decoration-[#887454]">Home</h1>
                 </div>
             </div>
-            <div className="w-full h-[90px] bg-[#f7f4ee]"/>
+            <Achievement />
             <div className="w-full h-[115px] bg-white grid text-center place-items-center" id="about">
                 <h1 className="text-black text-4xl font-bold">ABOUT US</h1>
             </div>
@@ -23,7 +24,6 @@ const HomePage = () => {
                             Our Service
                         </span>
                     </h1>
-                    {/* The most common text colors are: #323232 #646464 #999999, but the color would be too dark if I use any of these */}
                     <p className=" text-[#454544] text-lg mb-5 lg:leading-8.5 px-15">
                         Priority Construction is a leading provider of integrated fabrication, welding, mining construction, shutdown services, 
                         and project delivery solutions in Australia. With our extensive expertise and strategic locations across the country, 
@@ -36,7 +36,6 @@ const HomePage = () => {
                             Our Mission
                         </span>
                     </h1>
-                    {/* The most common text colors are: #323232 #646464 #999999, but the color would be too dark if I use any of these */}
                     <p className=" text-[#454544] text-lg mb-5 lg:leading-8.5 px-15">
                         At Priority Construction, our mission is to deliver positive outcomes for clients in the mining, industrial, telecommunications, and energy markets. 
                         We achieve this by offering a comprehensive range of capabilities and a fully integrated delivery model.
@@ -53,7 +52,6 @@ const HomePage = () => {
                             Latest Project
                         </span>
                     </h1>
-                    {/* The most common text colors are: #323232 #646464 #999999, but the color would be too dark if I use any of these */}
                     <p className=" text-[#454544] text-lg mb-5 lg:leading-8.5 px-15">
                         Priority Construction was founded in 2021, starting our journey a small crew of Boilermaker and Welding service supply in the Pilbara. 
                         Currently, Priority Construction has over 30 personnel. And service the Company such as BHP, Rio tinto, FMG and Water Corporation.
@@ -65,7 +63,6 @@ const HomePage = () => {
                             Our Goal
                         </span>
                     </h1>
-                    {/* The most common text colors are: #323232 #646464 #999999, but the color would be too dark if I use any of these */}
                     <p className=" text-[#454544] text-lg mb-5 lg:leading-8.5 px-15">
                         As a privately owned business, Priority Construction upholds a set of core values that have contributed to our continual growth and success. 
                         People, Unity, Agility, Determination, and Delivery form the pillars of our operations, guiding our decision-making and shaping our company culture. 

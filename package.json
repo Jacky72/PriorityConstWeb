@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "motion": "^12.23.12",
+    "react-animated-numbers": "^1.1.1"
+  }
+}

@@ -33,20 +33,20 @@ const Navbar = () => {
 
     const [navbarOpen, setNavbarOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false)
+    const [progress, setProgress] = useState(0);
     const scrollVal = 450;
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > scrollVal) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-            console.log("Scroll Y:", window.scrollY, scrolled);
+            const y = window.scrollY;
+            const { scrollHeight, clientHeight } = document.documentElement;
+            const total = Math.max(1, scrollHeight - clientHeight);
+            setScrolled(y > scrollVal);
+            setProgress((y / total) * 100);
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [scrolled]);
+    }, []);
 
     {/* This useEffect is to make sure that the Navbar is closed when we enlarge the webpage from small width to wide width */}
     useEffect(() => {
