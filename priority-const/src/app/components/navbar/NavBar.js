@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
-import NavLink from './NavLink'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import OpenMenu from "./OpenMenu"
 
@@ -30,6 +29,7 @@ const Navbar = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false)
     const [progress, setProgress] = useState(0);
+    const [openDropdown, setOpenDropdown] = useState(null);
     const scrollVal = 450;
 
     useEffect(() => {
@@ -40,8 +40,12 @@ const Navbar = () => {
             setScrolled(y > scrollVal);
             setProgress((y / total) * 100);
         };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleScroll);
+        };
     }, []);
 
     {/* This useEffect is to make sure that the Navbar is closed when we enlarge the webpage from small width to wide width */}
@@ -61,6 +65,12 @@ const Navbar = () => {
 
     return (
         <nav className={`fixed navbar-font mx-auto top-0 left-0 right-0 z-10 min-h-60px max-h-65px border-2 border-black transition-colors duration-300 ${scrolled ? "bg-[#f8f4ec] text-[#ac8c04]" : "bg-[#141312] text-white"}`}> {/* Common NavBar Height = 60 to 100px bg-[#96affc]*/}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[4px] bg-white/15">
+                <div
+                className="h-full bg-[#ac8c04] transition-[width] duration-100"
+                style={{ width: `${progress}%` }}
+                />
+            </div>
             <div className="flex flex-wrap items-center justify-between mx-auto lg:px-20 px-5 py-2">
                 <Link href={"/"} className="flex items-center gap-3 md:gap-6"> 
                     <Image src="/Logo.png" alt="Priority Construction Logo" width={100} height={50} className="h-10 w-auto md:h-12 shrink-0"/> 
@@ -78,23 +88,20 @@ const Navbar = () => {
                 <div className="hidden md:block md:w-auto" id="navbar">
                     <ul className="flex p-4 md:p-0 md:flex-row md:space-x-12 mt-0 text-xl font-bold">
                         {navLinks.map((link) => (
-                            <li key={link.title} className="relative group">
+                            <li key={link.title} className="relative group" onMouseEnter={() => setOpenDropdown(link.title)} onMouseLeave={() => setOpenDropdown(null)}>
                                 {link.children ? (
                                 <>
-                                    <Link href={link.path} className="inline-flex items-center gap-1 underline-offset-4 hover:underline">
+                                    <Link href={link.path} className="inline-flex items-center gap-1 underline-offset-4 hover:underline" onFocus={() => setOpenDropdown(link.title)} onClick={() => setOpenDropdown(null)}>
                                     {link.title}
                                     <ChevronDownIcon className="h-4 w-4" />
                                     </Link>
 
                                     <div
                                     className={`
-                                        invisible opacity-0 translate-y-1
-                                        group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
-                                        group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
                                         absolute left-0 top-full mt-2 w-44 rounded-md border shadow-lg z-50
                                         transition-all duration-150
-                                        ${scrolled ? "bg-[#f8f4ec] text-[#141312] border-black/10"
-                                                : "bg-[#141312] text-white border-white/10"}
+                                        ${openDropdown === link.title ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-1"}
+                                        ${scrolled ? "bg-white text-[#ac8c04] border-black/3": "bg-[#141312] text-white border-white/10"}
                                     `}
                                     >
                                     {link.children.map((child) => (
