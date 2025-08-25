@@ -3,21 +3,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import NavLink from './NavLink'
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import OpenMenu from "./OpenMenu"
 
 const navLinks = [
     {
-      title: "Home",
-      path: "/",
-    },
-    {
-        title: "About Us",
-        path: "/#about",
-    },
-    {
-        title: "Our History",
-        path: "/#history",
+        title: "Home",
+        path: "/",
+        children: [
+            { title: "About Us", path: "/#about" },
+            { title: "Our History", path: "/#history" },
+        ],
     },
     {
         title: "Project",
@@ -79,12 +75,41 @@ const Navbar = () => {
                     )
                 }
                 </div>
-                <div className="menu hidden md:block md:w-auto" id="navbar">
-                    <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0 text-xl font-bold">
-                        {navLinks.map(link => (
-                            <Link href={link.path} key={link.title}>
-                                {link.title}
-                            </Link>
+                <div className="hidden md:block md:w-auto" id="navbar">
+                    <ul className="flex p-4 md:p-0 md:flex-row md:space-x-12 mt-0 text-xl font-bold">
+                        {navLinks.map((link) => (
+                            <li key={link.title} className="relative group">
+                                {link.children ? (
+                                <>
+                                    <Link href={link.path} className="inline-flex items-center gap-1 underline-offset-4 hover:underline">
+                                    {link.title}
+                                    <ChevronDownIcon className="h-4 w-4" />
+                                    </Link>
+
+                                    <div
+                                    className={`
+                                        invisible opacity-0 translate-y-1
+                                        group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                                        group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                                        absolute left-0 top-full mt-2 w-44 rounded-md border shadow-lg z-50
+                                        transition-all duration-150
+                                        ${scrolled ? "bg-[#f8f4ec] text-[#141312] border-black/10"
+                                                : "bg-[#141312] text-white border-white/10"}
+                                    `}
+                                    >
+                                    {link.children.map((child) => (
+                                        <Link key={child.title} href={child.path} className={`block px-3 py-2 ${scrolled ? "hover:bg-black/5" : "hover:bg-[#f8f4ec]/9"}`}>
+                                        {child.title}
+                                        </Link>
+                                    ))}
+                                    </div>
+                                </>
+                                ) : (
+                                <Link href={link.path} className="underline-offset-4 hover:underline">
+                                    {link.title}
+                                </Link>
+                                )}
+                            </li>
                         ))}
                     </ul>
                 </div>

@@ -2,7 +2,7 @@
 import React from 'react';
 import Carousel from "@/app/components/carousel/Carousel";
 import Achievement from '../components/achievement/achievement';
-import Image from 'next/image';
+import Link from 'next/link';
 
 const HomePage = () => {
 
@@ -70,9 +70,16 @@ const HomePage = () => {
                     </p>
                 </div>
             </div>
-            <div className="w-full h-px bg-[#454544] my-8" />
-            <div className="w-full h-[700px] bg-white grid text-center place-items-center">
-                <Carousel />
+            <div className="w-full h-px  my-7" />
+            <div className="w-full h-[700px] bg-white text-center grid grid-cols-1 sm:grid-cols-12 px-20">
+                <div className="col-span-7 place-items-center">
+                    <Carousel />
+                </div>
+                <div className="col-span-5 place-items-center text-black grid items-start">
+                    <h1 className="mt-10 text-3xl text-center">Priority Construction Service focus on Top Boilermaker Welder supply</h1>
+                    <span className="text-xl">Be Safe, Be Satisfied!</span>
+                    <Link href={"/contact"} className="text-xl px-3 border-2 py-2 rounded-2xl">Contact Us</Link>
+                </div>
             </div>
         </section>
     )
