@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
+import { usePathname } from "next/navigation";
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import OpenMenu from "./OpenMenu"
 
@@ -31,13 +32,19 @@ const Navbar = () => {
     const [progress, setProgress] = useState(0);
     const [openDropdown, setOpenDropdown] = useState(null);
     const scrollVal = 450;
+    const pathname = usePathname();
+    const isHome = pathname === "/";
 
     useEffect(() => {
         const handleScroll = () => {
             const y = window.scrollY;
             const { scrollHeight, clientHeight } = document.documentElement;
             const total = Math.max(1, scrollHeight - clientHeight);
-            setScrolled(y > scrollVal);
+            if (!isHome) {
+                setScrolled(true)
+            } else {
+                setScrolled(y > scrollVal);
+            }
             setProgress((y / total) * 100);
         };
         window.addEventListener("scroll", handleScroll, { passive: true });
@@ -46,7 +53,7 @@ const Navbar = () => {
             window.removeEventListener("scroll", handleScroll);
             window.removeEventListener("resize", handleScroll);
         };
-    }, []);
+    }, [isHome]);
 
     {/* This useEffect is to make sure that the Navbar is closed when we enlarge the webpage from small width to wide width */}
     useEffect(() => {
