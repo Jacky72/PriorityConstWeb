@@ -17,7 +17,7 @@ const HomePage = () => {
             <div className="w-full h-[115px] bg-white grid text-center place-items-center" id="about">
                 <h1 className="text-black text-4xl font-bold">ABOUT US</h1>
             </div>
-            <div className="w-full h-[620px] sm:h-[310px] bg-[#f7f4ee] grid grid-cols-1 sm:grid-cols-12">
+            <div className="w-full h-[620px] md:h-[400px] sm:h-[310px] bg-[#f7f4ee] grid grid-cols-1 sm:grid-cols-12">
                 <div className="col-span-6 place-self-center sm:text-left"> 
                     <h1 className="mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
                         <span className="text-black bg-clip-text"> 
@@ -45,7 +45,7 @@ const HomePage = () => {
             <div className="w-full h-[115px] bg-white grid text-center place-items-center" id="history">
                 <h1 className="text-black text-4xl font-bold">OUR HISTORY</h1>
             </div>
-            <div className="w-full h-[700px] sm:h-[350px] bg-[#f7f4ee] grid grid-cols-1 sm:grid-cols-12">
+            <div className="w-full h-[700px] md:h-[450px] sm:h-[350px] bg-[#f7f4ee] grid grid-cols-1 sm:grid-cols-12">
                 <div className="col-span-6 place-self-center sm:text-left"> 
                     <h1 className="mb-4 text-xl sm:text-xl lg:text-2xl lg:leading-normal font-bold text-center py-3"> 
                         <span className="text-black bg-clip-text"> 
@@ -72,9 +72,10 @@ const HomePage = () => {
             </div>
             <div className="w-full h-px  my-7" />
             <div className="w-full h-[1200px] sm:h-[700px] bg-white text-center grid grid-cols-1 sm:grid-cols-12 px-20">
-                <div className="col-span-7 place-items-center">
+                <div className="col-span-6 place-items-center">
                     <Carousel />
                 </div>
+                <div className="grid-span-1"></div>
                 <div className="col-span-5 place-items-center text-black grid items-start">
                     <h1 className="mt-10 text-3xl text-center">Priority Construction Service focus on Top Boilermaker Welder supply</h1>
                     <span className="text-xl">Be Safe, Be Satisfied!</span>
