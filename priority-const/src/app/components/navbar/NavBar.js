@@ -74,7 +74,7 @@ const Navbar = () => {
             <div className="flex flex-wrap items-center justify-between mx-auto lg:px-20 px-5 py-2">
                 <Link href={"/"} className="flex items-center gap-3 md:gap-6"> 
                     <Image src="/Logo.png" alt="Priority Construction Logo" width={100} height={50} className="h-10 w-auto md:h-12 shrink-0"/> 
-                    <span className="text-xl md:text-2xl font-semibold hover:text-[#ac8c04]"> Priority Construction </span>
+                    <span className="text-xl md:text-2xl max-[350px]:text-sm font-semibold hover:text-[#ac8c04]"> Priority Construction </span>
                 </Link>
                 <div className="mobile-menu block md:hidden">  {/* Hide the NavBar for small screens */}
                 {
