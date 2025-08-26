@@ -79,9 +79,9 @@ const Navbar = () => {
                 <div className="mobile-menu block md:hidden">  {/* Hide the NavBar for small screens */}
                 {
                     !navbarOpen ? (
-                    <button onClick={() => setNavbarOpen(true)} className="flex item-center px-3 py-2 border-2 rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"><Bars3Icon className="h-5 w-5"/></button>
+                    <button onClick={() => setNavbarOpen(true)} className={`flex item-center px-3 py-2 border-2 rounded ${scrolled ? "border-[#ac8c04] text-[#ac8c04] hover:text-[#ac8c04] hover:border-[#ac8c04]": "border-slate-200 text-slate-200 hover:text-white hover:border-white"}`}><Bars3Icon className="h-5 w-5"/></button>
                     ) : (
-                    <button onClick={() => setNavbarOpen(false)} className="flex item-center px-3 py-2 border-2 rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"><XMarkIcon className="h-5 w-5"/></button>
+                    <button onClick={() => setNavbarOpen(false)} className={`flex item-center px-3 py-2 border-2 rounded ${scrolled ? "border-[#ac8c04] text-[#ac8c04] hover:text-[#ac8c04] hover:border-[#ac8c04]": "border-slate-200 text-slate-200 hover:text-white hover:border-white"}`}><XMarkIcon className="h-5 w-5"/></button>
                     )
                 }
                 </div>
@@ -121,7 +121,13 @@ const Navbar = () => {
                     </ul>
                 </div>
             </div>
-            {navbarOpen ? <OpenMenu links={navLinks}/> : null}
+            {navbarOpen ? (
+                <OpenMenu
+                    links={navLinks}
+                    scrolled={scrolled}
+                    onNavigate={() => setNavbarOpen(false)}
+                />
+            ) : null}
         </nav>
     )
 }
