@@ -4,11 +4,10 @@ import React from 'react';
 const ContactPage = () => {
 
     return (
-        <section className="bg-white" id="project">
-            <div className="relative min-h-[320px] md:min-h-[450px] bg-[url('/Logo1.png')] bg-no-repeat bg-contain bg-[#141312] bg-center grid place-items-center">
-                <div className="text-white text-center px-4">
-                    <h1 className="heading-font text-3xl md:text-7xl font-extrabold italic underline underline-offset-5 decoration-[#887454]">Home</h1>
-                </div>
+        <section id="contact" className="bg-white">
+            <div className="w-full min-h-screen bg-[#f7f4ee]">
+                <div className="relative min-h-[320px] md:min-h-[130px]"></div>
+                <h1 className="text-center text-black text-3xl font-extrabold heading-font underline mb-8">Contacts</h1>
             </div>
         </section>
     )

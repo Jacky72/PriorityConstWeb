@@ -43,6 +43,9 @@ const Navbar = () => {
             if (!isHome) {
                 setScrolled(true)
             } else {
+                if (y == 0) {
+                    setScrolled(false)
+                }
                 setScrolled(y > scrollVal);
             }
             setProgress((y / total) * 100);
@@ -71,7 +74,7 @@ const Navbar = () => {
     }, []);
 
     return (
-        <nav className={`fixed navbar-font mx-auto top-0 left-0 right-0 z-10 min-h-60px max-h-65px border-2 border-black transition-colors duration-300 ${scrolled ? "bg-[#f8f4ec] text-[#ac8c04]" : "bg-[#141312] text-white"}`}> {/* Common NavBar Height = 60 to 100px bg-[#96affc]*/}
+        <nav className={`fixed navbar-font mx-auto top-0 left-0 right-0 z-10 min-h-60px max-h-65px border-b-2 border-black transition-colors duration-300 ${scrolled ? "bg-[#f8f4ec] text-[#ac8c04]" : "bg-[#141312] text-white"}`}> {/* Common NavBar Height = 60 to 100px bg-[#96affc]*/}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[4px] bg-white/15">
                 <div
                 className="h-full bg-[#ac8c04] transition-[width] duration-100"
