@@ -22,6 +22,10 @@ const navLinks = [
     {
         title: "Contact",
         path: "/contact",
+        children: [
+            { title: "Contact Info", path: "/contact#contact-info" },
+            { title: "Contact Form", path: "/contact#contact-form" },
+        ],
     },
 ]
 

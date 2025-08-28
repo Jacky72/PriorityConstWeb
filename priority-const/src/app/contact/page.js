@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Footer from '../components/footer/footer';
 
 const ContactPage = () => {
 
@@ -62,7 +63,7 @@ const ContactPage = () => {
     return (
         <section id="contact" className="bg-white">
             <div className="w-full min-h-screen bg-[#f7f4ee]">
-                <div className="relative min-h-[320px] md:min-h-[100px]"></div>
+                <div className="relative min-h-[70px] "  id="contact-info"></div>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid gap-6">
                     <div className="grid grid-cols-12 gap-6 md:gap-8">
                         <div className="col-span-12 md:col-span-6">
@@ -80,16 +81,16 @@ const ContactPage = () => {
                         <div className="col-span-12 md:col-span-6 text-center text-black px-6">
                             <p className="text-4xl font-extrabold mt-8">Contact Us</p>
                             <p className="text-xl mt-10 font-bold">Questions & Estimates</p>
-                            <p className="text-xl mt-10 text-gray-500">We would love to hear from you! Whether you have a question about our services, need a quote for your project, or just want to say hello, feel free to reach out to us.</p>
+                            <p className="text-xl mt-10 text-gray-600">We would love to hear from you! Whether you have a question about our services, need a quote for your project, or just want to say hello, feel free to reach out to us.</p>
                             <p className="text-xl mt-10 font-bold">Priority Construction Engineering Service</p> 
-                            <p className="text-xl mt-10">We are ready to assist you with all your fabrication, machining, maintenance, and industrial engineering needs.</p> 
+                            <p className="text-xl mt-10 text-gray-600">We are ready to assist you with all your fabrication, machining, maintenance, and industrial engineering needs.</p> 
                             <p className="text-xl mt-10 font-bold">Call us today:   (+61) 452 069 866</p>
                             <p className="text-xl mt-10 font-bold">Email us:   shunda@priorityconst.com.au</p>
-                            <p className="text-xl mt-10 font-bold">Or fill out our Contact Form below, and we will get back to you promptly.</p>
+                            <p className="text-xl mt-20 font-bold">Or fill out our Contact Form below, and we will get back to you promptly.</p>
 
                         </div>
                     </div>
-                    <div className="text-center text-black md:mt-15 px-8">
+                    <div className="text-center text-black md:mt-15 md:px-8 px-1" id="contact-form">
                         <h1 className="text-3xl font-extrabold">Contact Form</h1>
                         <form onSubmit={handleSubmit} noValidate className="border border-gray-300 rounded-lg p-6 mt-6 text-left">
                             <input type="text" id="name" name="name" required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" placeholder="Your Name *" />
@@ -104,8 +105,9 @@ const ContactPage = () => {
                             {status && <p className="mt-4 text-center text-red-500">{status}</p>}
                         </form>
                     </div>
-                    <div className="w-full h-px my-2"/>
+                    <div className="w-full h-px my-2"/>    
                 </div>
+                <Footer />
             </div>
         </section>
     )

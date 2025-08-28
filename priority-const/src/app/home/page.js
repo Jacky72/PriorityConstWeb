@@ -1,8 +1,9 @@
 "use client";
 import React from 'react';
-import Carousel from "@/app/components/carousel/Carousel";
+import Carousel from "@/app/components/carousel/carousels";
 import Achievement from '../components/achievement/achievement';
 import Link from 'next/link';
+import Footer from '../components/footer/footer';
 
 const HomePage = () => {
 
@@ -13,9 +14,9 @@ const HomePage = () => {
                     <h1 className="heading-font text-3xl md:text-7xl font-extrabold italic underline underline-offset-5 decoration-[#887454]">Home</h1>
                 </div>
             </div>
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-7xl" id="about">
                 <Achievement />
-                <div className="w-full h-[115px] bg-white grid text-center place-items-center rounded-3xl border-2 border-gray-300" id="about">
+                <div className="w-full h-[115px] bg-white grid text-center place-items-center rounded-3xl border-2 border-gray-300">
                     <h1 className="text-black text-4xl font-bold">ABOUT US</h1>
                 </div>
                 <div className="w-full h-[620px] md:h-[400px] sm:h-[310px] max-[350px]:h-[980px] bg-[#f7f4ee] grid grid-cols-1 sm:grid-cols-12">
@@ -37,13 +38,13 @@ const HomePage = () => {
                                 Our Mission
                             </span>
                         </h1>
-                        <p className=" text-[#454544] text-lg mb-5 lg:leading-8.5 px-15">
+                        <p className=" text-[#454544] text-lg mb-5 lg:leading-8.5 px-15" id="history">
                             At Priority Construction, our mission is to deliver positive outcomes for clients in the mining, industrial, telecommunications, and energy markets.
                             We achieve this by offering a comprehensive range of capabilities and a fully integrated delivery model.
                         </p>
                     </div>
                 </div>
-                <div className="w-full h-[115px] bg-white grid text-center place-items-center rounded-3xl  border-2 border-gray-300" id="history">
+                <div className="w-full h-[115px] bg-white grid text-center place-items-center rounded-3xl  border-2 border-gray-300">
                     <h1 className="text-black text-4xl font-bold">OUR HISTORY</h1>
                 </div>
                 <div className="w-full h-[700px] md:h-[450px] sm:h-[350px] max-[350px]:h-[1000px] bg-[#f7f4ee] grid grid-cols-1 sm:grid-cols-12">
@@ -84,6 +85,7 @@ const HomePage = () => {
                 </div>
                 <div className="w-full h-px my-7" />
             </div>
+            <Footer />
         </section>
     )
 }
