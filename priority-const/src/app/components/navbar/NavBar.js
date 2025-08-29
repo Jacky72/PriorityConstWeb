@@ -22,6 +22,10 @@ const navLinks = [
     {
         title: "Contact",
         path: "/contact",
+        children: [
+            { title: "Contact Info", path: "/contact#contact-info" },
+            { title: "Contact Form", path: "/contact#contact-form" },
+        ],
     },
 ]
 
@@ -43,9 +47,6 @@ const Navbar = () => {
             if (!isHome) {
                 setScrolled(true)
             } else {
-                if (y == 0) {
-                    setScrolled(false)
-                }
                 setScrolled(y > scrollVal);
             }
             setProgress((y / total) * 100);
@@ -61,6 +62,7 @@ const Navbar = () => {
     {/* This useEffect is to make sure that the Navbar is closed when we enlarge the webpage from small width to wide width */}
     useEffect(() => {
         {/* Small screen width = 768 Large screen width = 1080, 1600, 1800 ... Based on different resolution */}
+        setScrolled(!isHome);
         const handleResize = () => {
             {/* If detected that the screen width is larger than 768, hide the button and display the NavBar */}
             if (window.innerWidth >= 768) {
@@ -71,7 +73,7 @@ const Navbar = () => {
         window.addEventListener("resize", handleResize);
     
         return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, [isHome]);
 
     return (
         <nav className={`fixed navbar-font mx-auto top-0 left-0 right-0 z-10 min-h-60px max-h-65px border-b-2 border-black transition-colors duration-300 ${scrolled ? "bg-[#f8f4ec] text-[#ac8c04]" : "bg-[#141312] text-white"}`}> {/* Common NavBar Height = 60 to 100px bg-[#96affc]*/}

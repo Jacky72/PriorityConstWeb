@@ -1,14 +1,15 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
+import Footer from '../components/footer/footer';
 
 const ProjectPage = () => {
 
     return (
         <section id="project" className="bg-white">
             <div className="w-full min-h-screen bg-[#f7f4ee]">
-                <div className="relative min-h-[320px] md:min-h-[130px]"></div>
-                <h1 className="text-center text-black text-3xl font-extrabold heading-font underline mb-8">Past Project</h1>
+                <div className="relative min-h-[80px] md:min-h-[130px]"></div>
+                <h1 className="text-center text-black text-3xl font-extrabold heading-font underline md:mb-8">Past Project</h1>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid gap-6">
                     <div className="grid grid-cols-12 gap-6 md:gap-8">
                         <div className="col-span-12 md:col-span-5">
@@ -129,6 +130,7 @@ const ProjectPage = () => {
                     <div className="w-full h-px my-2"/>
                 </div>
             </div>
+            <Footer />
         </section>
     )
 }
