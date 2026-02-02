@@ -1,21 +1,39 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, useCallback  } from "react";
 
 const Carousel = ({ interval = 2000, height = 620 }) => {
 
-  const slides = ["/Pic1.jpg", "/Pic2.jpg", "/Pic3.jpg"];
+  const slides = ["/Pic1.jpg", "/Pic2.jpg", "/Pic3.jpg","/Pic4.jpg", "/Pic5.jpg", "/Pic6.jpg"];
+
+  const timerRef = useRef(null);
 
   const [i, setI] = useState(0);
 
-  useEffect(() => {
-    const id = setInterval(() => setI((x) => (x + 1) % slides.length), interval);
-    return () => clearInterval(id);
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+
+    timerRef.current = setInterval(() => {
+      setI((x) => (x + 1) % slides.length);
+    }, interval);
   }, [interval, slides.length]);
 
-  const prev = () => setI((x) => (x - 1 + slides.length) % slides.length);
-  const next = () => setI((x) => (x + 1) % slides.length);
+  useEffect(() => {
+    startTimer();
+    return () => clearInterval(timerRef.current);
+  }, [startTimer]);
+
+  const prev = () => {
+    setI(idx);
+    startTimer();
+  };
+
+  const next = () => {
+    setI((x) => (x + 1) % slides.length);
+    startTimer();
+  };
+
 
   return (
     <div className={"relative w-full max-w-xl mx-auto "}>
