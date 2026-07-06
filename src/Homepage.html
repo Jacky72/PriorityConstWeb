@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Priority Construction Pty Ltd — Fabrication &amp; Welding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --page-bg: #FBFAF7;
+    --soft-bg: #F2F0EA;
+    --soft-bg-2: #E9E5DC;
+    --line: #E2DDD2;
+    --ink: #1C1813;
+    --header: #16130F;
+    --body: #585349;
+    --muted: #8D887D;
+    --white: #FFFFFF;
+    --gold: #C9A227;
+    --gold-d: #9A7715;
+
+    --serif: "Newsreader", serif;
+    --sans: "Hanken Grotesk", sans-serif;
+    --head-ls: -0.005em;
+
+    --mx: clamp(20px, 4vw, 64px);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    background: var(--page-bg);
+    color: var(--body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1440px; margin: 0 auto; padding-inline: var(--mx); }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: var(--head-ls); color: var(--ink); margin: 0; }
+
+  .cover { width: 100%; height: 100%; object-fit: cover; }
+
+  .label {
+    font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-d);
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 99px; background: var(--gold); flex-shrink: 0; }
+
+  .btn {
+    font-family: var(--sans); font-weight: 700; font-size: 15.5px;
+    color: var(--ink); background: var(--gold);
+    padding: 15px 28px; display: inline-flex; align-items: center; gap: 10px;
+    border-radius: 2px; border: none; cursor: pointer; transition: background .18s ease; white-space: nowrap;
+  }
+  .btn:hover { background: #D8B33A; }
+  .btn--ghost {
+    color: var(--ink); background: transparent; border: 1.5px solid var(--ink); font-weight: 600;
+    padding: 13.5px 28px;
+  }
+  .btn--ghost:hover { background: var(--ink); color: var(--white); }
+  .arrow { width: 15px; height: 15px; flex-shrink: 0; }
+
+  .link-underline {
+    font-family: var(--sans); font-weight: 600; font-size: 15.5px; color: var(--ink);
+    border-bottom: 1.5px solid var(--gold); padding-bottom: 3px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .link-underline:hover { color: var(--gold-d); }
+
+  /* ── Header (light) ── */
+  .header {
+    background: rgba(251,250,247,0.88);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .header__inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-block: 14px; gap: 24px;
+  }
+  .mark { display: flex; align-items: center; gap: 13px; min-width: 0; }
+  .mark__glyph { height: 42px; width: auto; flex-shrink: 0; }
+  .mark__word {
+    font-family: var(--sans); font-weight: 700; font-size: 16px;
+    letter-spacing: 0.14em; color: var(--ink); line-height: 1.1; white-space: nowrap;
+  }
+  .mark__word i { display: block; font-style: normal; font-weight: 600; font-size: 9.5px; letter-spacing: 0.32em; color: var(--gold-d); margin-top: 3px; }
+  .nav { display: flex; align-items: center; gap: 28px; }
+  .nav a { font-size: 15px; font-weight: 500; color: var(--body); transition: color .15s ease; }
+  .nav a.is-active, .nav a:hover { color: var(--ink); }
+  .nav a.btn { color: var(--ink); }
+
+  /* hamburger */
+  .nav-toggle {
+    display: none; width: 46px; height: 46px; flex-shrink: 0;
+    background: transparent; border: none; cursor: pointer; padding: 11px;
+    flex-direction: column; justify-content: center; gap: 5px;
+  }
+  .nav-toggle span { display: block; height: 2px; width: 100%; background: var(--ink); border-radius: 2px; transition: transform .22s ease, opacity .18s ease; }
+  .header.is-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .header.is-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .header.is-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── Hero (contained, in-scale) ── */
+  .hero { padding-block: clamp(46px, 6vw, 84px); }
+  .hero__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+  .hero h1 { font-size: clamp(36px, 4.6vw, 56px); line-height: 1.07; margin-top: 22px; text-wrap: balance; }
+  .hero p { font-size: 18.5px; line-height: 1.7; color: var(--body); max-width: 460px; margin: 22px 0 34px; }
+  .hero__actions { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+  .hero__media { height: clamp(330px, 38vw, 460px); overflow: hidden; background: var(--soft-bg-2); }
+
+  /* ── Trust strip ── */
+  .trust { display: flex; align-items: center; gap: 44px; padding-block: 26px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .trust__label { font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); flex-shrink: 0; }
+  .trust__logos { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+  .trust__logos span { font-family: var(--serif); font-weight: 500; font-size: 20px; color: var(--muted); }
+
+  /* ── Stats (unchanged) ── */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); padding-block: 52px; }
+  .stat { padding-inline: 30px; }
+  .stat:first-child { padding-left: 0; }
+  .stat + .stat { border-left: 1px solid var(--line); }
+  .stat__n { font-family: var(--serif); font-weight: 500; font-size: 50px; line-height: 1; color: var(--ink); }
+  .stat__n b { color: var(--gold-d); font-weight: 500; }
+  .stat__l { font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: 10px; }
+
+  /* ── Sections ── */
+  .sec { padding-block: 84px; }
+  #services { padding-top: 28px; }
+  #services, #about, #work, #contact { scroll-margin-top: 80px; }
+  .sec--soft { background: var(--soft-bg); }
+  .sec__head { max-width: 580px; }
+  .sec h2 { font-size: clamp(30px, 3.5vw, 40px); line-height: 1.14; margin-top: 16px; }
+
+  /* ── Services ── */
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px; margin-top: 48px; }
+  .service { border-top: 2px solid var(--ink); padding-top: 22px; }
+  .service__num { font-family: var(--serif); font-weight: 500; font-size: 15px; color: var(--gold-d); margin-bottom: 14px; }
+  .service h3 { font-size: 22px; margin-bottom: 12px; }
+  .service p { font-size: 15px; line-height: 1.62; color: var(--body); margin: 0; }
+
+  /* ── About ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .about__media { height: 460px; overflow: hidden; background: var(--soft-bg-2); }
+  .about p { font-size: 17.5px; line-height: 1.72; color: var(--body); }
+  .values { border-top: 1px solid var(--line); padding-top: 22px; margin-top: 30px; }
+  .values__list { display: flex; flex-wrap: wrap; gap: 12px 14px; margin-top: 14px; }
+  .values__list span { font-size: 15px; font-weight: 600; color: var(--ink); display: inline-flex; align-items: center; gap: 9px; }
+
+  /* ── Markets ── */
+  .markets__head { display: grid; grid-template-columns: 1fr 0.9fr; gap: 40px; align-items: end; }
+  .markets__intro { font-size: 17px; line-height: 1.65; color: var(--body); max-width: 460px; margin: 0; }
+  .markets-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 44px; border-top: 1px solid var(--line); }
+  .market { padding: 30px 30px 30px 0; border-right: 1px solid var(--line); }
+  .market:last-child { border-right: none; padding-right: 0; }
+  .market:not(:first-child) { padding-left: 30px; }
+  .market__n { font-family: var(--serif); font-size: 15px; color: var(--gold-d); }
+  .market h3 { font-size: 21px; margin: 12px 0 10px; }
+  .market p { font-size: 14.5px; line-height: 1.6; color: var(--body); margin: 0; }
+
+  /* ── Mission & Goal ── */
+  .mg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); }
+  .mg { position: relative; padding-top: 26px; border-top: 2px solid var(--ink); }
+  .mg h3 { font-size: clamp(24px, 2.6vw, 30px); line-height: 1.16; margin: 16px 0 16px; }
+  .mg p { font-size: 17px; line-height: 1.72; color: var(--body); margin: 0; }
+
+  /* ── Carousel (crossfade, fixed frame) ── */
+  .carousel { max-width: 980px; margin: 46px auto 0; }
+  .carousel__frame { position: relative; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: var(--soft-bg-2); }
+  .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .55s ease; pointer-events: none; }
+  .slide.is-active { opacity: 1; pointer-events: auto; }
+  .carousel__arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 50px; height: 50px; border-radius: 99px; border: none; cursor: pointer;
+    background: rgba(22,19,15,0.74); color: var(--white);
+    display: flex; align-items: center; justify-content: center; transition: background .18s ease; z-index: 3;
+  }
+  .carousel__arrow:hover { background: var(--header); }
+  .carousel__arrow.prev { left: 16px; }
+  .carousel__arrow.next { right: 16px; }
+  .carousel__bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 20px; flex-wrap: wrap; }
+  .carousel__cap { display: flex; align-items: baseline; gap: 16px; }
+  .carousel__cap .t { font-family: var(--serif); font-weight: 500; font-size: 19px; color: var(--ink); }
+  .carousel__cap .c { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .carousel__dots { display: flex; gap: 9px; }
+  .carousel__dots button { width: 8px; height: 8px; border-radius: 99px; border: none; padding: 0; cursor: pointer; background: var(--soft-bg-2); transition: background .18s ease, width .18s ease; }
+  .carousel__dots button.is-active { background: var(--gold); width: 24px; }
+
+  /* ── Tagline ── */
+  .tagline { text-align: center; padding-block: 72px; }
+  .tagline__q { font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 3vw, 38px); color: var(--ink); margin: 16px auto 0; max-width: 720px; text-wrap: balance; }
+
+  /* ── Contact ── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 0.95fr; gap: clamp(32px, 5vw, 72px); margin-top: 44px; align-items: start; }
+  .contact__lead { font-size: 19px; line-height: 1.6; color: var(--ink); margin: 0 0 18px; max-width: 460px; }
+  .contact__sub { font-size: 16px; line-height: 1.68; color: var(--body); margin: 0 0 30px; max-width: 460px; }
+  .contact__rows { display: flex; flex-direction: column; }
+  .contact__row { display: flex; align-items: baseline; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .contact__row:last-child { border-bottom: 1px solid var(--line); }
+  .contact__row .k { font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); width: 92px; flex-shrink: 0; }
+  .contact__row .v { font-size: 18px; color: var(--ink); font-weight: 500; }
+  a.contact__row:hover .v { color: var(--gold-d); }
+
+  .contact__form { background: var(--white); border: 1px solid var(--line); padding: clamp(26px, 3vw, 38px); }
+  .form__title { font-family: var(--serif); font-weight: 500; font-size: 24px; color: var(--ink); margin: 0 0 6px; }
+  .form__note { font-size: 14.5px; color: var(--muted); margin: 0 0 24px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { display: block; margin-bottom: 16px; }
+  .field span { display: block; font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--body); margin-bottom: 8px; }
+  .field input, .field textarea {
+    width: 100%; font-family: var(--sans); font-size: 15.5px; color: var(--ink);
+    background: var(--page-bg); border: 1px solid var(--line); border-radius: 2px;
+    padding: 12px 14px; transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input::placeholder, .field textarea::placeholder { color: var(--muted); }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,162,39,0.16); }
+  .field textarea { resize: vertical; min-height: 96px; }
+  .form__ok { font-size: 14.5px; color: var(--gold-d); font-weight: 600; margin: 16px 0 0; }
+
+  /* ── Footer ── */
+  .footer { background: var(--header); padding-block: 56px 30px; color: rgba(255,255,255,0.6); }
+  .footer__top { display: flex; justify-content: space-between; gap: 48px; padding-bottom: 34px; border-bottom: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; }
+  .footer__brand .mark { margin-bottom: 20px; }
+  .footer__blurb { max-width: 330px; font-size: 15px; line-height: 1.65; }
+  .footer__cols { display: flex; gap: 64px; flex-wrap: wrap; }
+  .footer__col h4 { font-family: var(--serif); font-weight: 500; font-size: 15px; color: var(--white); margin-bottom: 16px; }
+  .footer__col div { font-size: 14.5px; margin-bottom: 10px; }
+  .footer__copy { padding-top: 22px; font-size: 13px; color: rgba(255,255,255,0.4); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .footer__copy .gold { color: var(--gold); }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  /* Never allow sideways scroll on any device */
+  html, body { overflow-x: hidden; }
+  .footer__col div, .contact__row .v { overflow-wrap: anywhere; }
+
+  /* Ultra-wide (2K / 4K): keep the column readable, let it breathe a touch */
+  @media (min-width: 1800px) {
+    .wrap { max-width: 1560px; }
+    .hero h1 { font-size: 60px; }
+  }
+
+  /* Laptop / small desktop */
+  @media (max-width: 1200px) {
+    .services-grid { gap: 28px; }
+    .footer__top { gap: 36px; }
+    .footer__cols { gap: 48px; }
+  }
+
+  /* Tablet landscape & below → hamburger menu */
+  @media (max-width: 1000px) {
+    .nav-toggle { display: flex; }
+    .nav {
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--page-bg); border-bottom: 1px solid var(--line);
+      padding: 6px var(--mx) 22px;
+      box-shadow: 0 26px 40px -28px rgba(0,0,0,0.45);
+      transform: translateY(-10px); opacity: 0; visibility: hidden;
+      transition: opacity .2s ease, transform .2s ease, visibility .2s;
+    }
+    .header.is-open .nav { transform: translateY(0); opacity: 1; visibility: visible; }
+    .nav a { display: flex; align-items: center; min-height: 48px; font-size: 17px; padding: 4px 2px; border-bottom: 1px solid var(--line); }
+    .nav a.btn { justify-content: center; margin-top: 16px; border-bottom: none; min-height: 50px; font-size: 15.5px !important; padding: 0 22px !important; }
+
+    .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero__media { order: -1; height: clamp(280px, 50vw, 360px); }
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
+    .stat:first-child { padding-left: 30px; }
+    .stat:nth-child(3) { border-left: none; padding-left: 0; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .about__media { height: 340px; }
+    .markets__head { grid-template-columns: 1fr; gap: 18px; }
+    .markets-grid { grid-template-columns: repeat(2, 1fr); }
+    .market:nth-child(2) { border-right: none; padding-right: 0; }
+    .market:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); }
+    .market:nth-child(4) { border-top: 1px solid var(--line); }
+    .mg-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  /* Tablet portrait */
+  @media (max-width: 760px) {
+    .sec { padding-block: 64px; }
+    #services { padding-top: 56px; }
+    .services-grid { margin-top: 36px; }
+    .footer__top { flex-direction: column; gap: 32px; }
+  }
+
+  /* Phones */
+  @media (max-width: 600px) {
+    .wrap { padding-inline: 22px; }
+    .hero { padding-block: 40px 8px; }
+    .hero h1 { margin-top: 18px; line-height: 1.13; }
+    .hero p { margin: 18px 0 28px; }
+    .hero__actions { flex-direction: column; align-items: stretch; gap: 14px; }
+    .hero__actions .btn { width: 100%; justify-content: center; }
+    .hero__actions .link-underline { align-self: center; min-height: 44px; padding: 6px 0; border-bottom: none; color: var(--gold-d); }
+    .trust { gap: 14px 24px; padding-block: 22px; }
+    .stats { grid-template-columns: 1fr; padding-block: 40px; }
+    .stat, .stat:first-child { padding-left: 0; }
+    .stat + .stat { border-left: none; border-top: 1px solid var(--line); padding-top: 24px; margin-top: 24px; }
+    .sec__head h2 { margin-top: 14px; }
+    .services-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+    .markets-grid { grid-template-columns: 1fr; margin-top: 32px; }
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+    .market { border-right: none; padding: 24px 0; border-top: 1px solid var(--line); }
+    .market:first-child { border-top: none; padding-top: 0; }
+    .market:nth-child(2), .market:nth-child(3), .market:nth-child(4) { padding-left: 0; }
+    .carousel__arrow { width: 42px; height: 42px; }
+    .carousel { margin-top: 28px; }
+    .carousel__bar { gap: 14px; }
+    .contact__row { flex-direction: column; gap: 4px; padding: 14px 0; }
+    .contact__row .k { width: auto; }
+    .footer__cols { gap: 32px; }
+    .mark__word { font-size: 13.5px; letter-spacing: 0.1em; }
+    .mark__word i { display: none; }
+    .mark__glyph { height: 38px; }
+  }
+
+  /* Small / older phones (iPhone SE, 320–380px) */
+  @media (max-width: 380px) {
+    .mark__glyph { height: 34px; }
+    .mark__word { font-size: 12px; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 17px; }
+  }
+
+  /* Short landscape phones — tame the sticky header */
+  @media (max-height: 460px) and (orientation: landscape) {
+    .header__inner { padding-block: 9px; }
+    .mark__glyph { height: 32px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="header">
+  <div class="wrap header__inner">
+    <a class="mark" href="#" aria-label="Priority Construction Pty Ltd home">
+      <img class="mark__glyph" src="../public/img/logo-mark.png" alt="" />
+      <span class="mark__word">PRIORITY CONSTRUCTION<i>Pty Ltd · Teamwork Makes The Dream Work</i></span>
+    </a>
+    <nav class="nav" id="primaryNav">
+      <a href="#" class="is-active">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#work">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn" style="padding:11px 22px;font-size:14.5px;">Request a Quote</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<section class="hero" data-screen-label="Hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <span class="label"><span class="dot"></span> WA-based · Established 2021</span>
+      <h1>Quality fabrication &amp; welding you can rely on.</h1>
+      <p>Integrated fabrication, welding, mining construction and shutdown services for Australia's mining, industrial and energy sectors.</p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn">Request a Free Quote
+          <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="#1C1813" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+        </a>
+        <a href="#services" class="link-underline">Our Services</a>
+      </div>
+    </div>
+    <div class="hero__media">
+      <img class="cover" src="../public/img/Pic1.jpg" alt="Large fabricated tanks under construction with crawler cranes on site" />
+    </div>
+  </div>
+</section>
+
+<!-- ── Trust strip ── -->
+<div class="wrap">
+  <div class="trust">
+    <span class="trust__label">Trusted by</span>
+    <div class="trust__logos">
+      <span>BHP</span><span>RIO TINTO</span><span>FMG</span><span>WATER CORPORATION</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Stats ── -->
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="stat__n">30<b>+</b></div><div class="stat__l">Skilled Tradespeople</div></div>
+    <div class="stat"><div class="stat__n">4<b>+</b></div><div class="stat__l">Major Clients Served</div></div>
+    <div class="stat"><div class="stat__n">5</div><div class="stat__l">Years in Operation</div></div>
+    <div class="stat"><div class="stat__n">100<b>%</b></div><div class="stat__l">Safety Commitment</div></div>
+  </div>
+</div>
+
+<!-- ── Services ── -->
+<section class="sec" id="services" data-screen-label="Services">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="label">What We Do</span>
+      <h2>A fully integrated delivery model</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service">
+        <div class="service__num">01</div>
+        <h3>Fabrication</h3>
+        <p>Custom steel and plate fabrication built to specification — tanks, vessels, spools and structural assemblies.</p>
+      </div>
+      <div class="service">
+        <div class="service__num">02</div>
+        <h3>Welding</h3>
+        <p>Certified boilermakers and welders for structural, pressure pipe and stainless work to AS standards.</p>
+      </div>
+      <div class="service">
+        <div class="service__num">03</div>
+        <h3>Mining Construction</h3>
+        <p>Dependable on-site construction and installation support for mine sites across Western Australia.</p>
+      </div>
+      <div class="service">
+        <div class="service__num">04</div>
+        <h3>Shutdown Services</h3>
+        <p>Planned and emergency shutdown crews, mobilised quickly to keep your operation running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section class="sec sec--soft" id="about" data-screen-label="About">
+  <div class="wrap about-grid">
+    <div class="about__media"><img class="cover" src="../public/img/Pic2.jpg" alt="Large stainless steel tank fabricated in the Priority Construction workshop" /></div>
+    <div class="about">
+      <span class="label">About Us</span>
+      <h2>A trusted name in WA construction</h2>
+      <p style="margin:20px 0 16px;">Priority Construction is a leading provider of integrated fabrication, welding, mining construction, shutdown services and project-delivery solutions in Australia. With extensive expertise and strategic locations across the country, we cater to the needs of clients in a wide range of industries.</p>
+      <p style="margin:0;">Founded in 2021, we started our journey as a small crew supplying boilermaker and welding services in Western Australia. Today Priority Construction fields over 30 personnel and services companies such as BHP, Rio Tinto, FMG and Water Corporation.</p>
+      <div class="values">
+        <span class="label">Our Values</span>
+        <div class="values__list">
+          <span><span class="dot"></span> People</span>
+          <span><span class="dot"></span> Unity</span>
+          <span><span class="dot"></span> Agility</span>
+          <span><span class="dot"></span> Determination</span>
+          <span><span class="dot"></span> Delivery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Markets ── -->
+<section class="sec markets" data-screen-label="Markets">
+  <div class="wrap">
+    <div class="markets__head">
+      <div class="sec__head">
+        <span class="label">Industries We Serve</span>
+        <h2>Delivering positive outcomes across four markets</h2>
+      </div>
+      <p class="markets__intro">Our mission is to deliver positive outcomes for clients by offering a comprehensive range of capabilities and a fully integrated delivery model.</p>
+    </div>
+    <div class="markets-grid">
+      <article class="market"><span class="market__n">01</span><h3>Mining</h3><p>On-site construction, fabrication and shutdown support for mine sites across Western Australia.</p></article>
+      <article class="market"><span class="market__n">02</span><h3>Industrial</h3><p>Workshop fabrication, machining and maintenance for heavy industrial plant and facilities.</p></article>
+      <article class="market"><span class="market__n">03</span><h3>Telecommunications</h3><p>Structural fabrication and install works supporting communications infrastructure.</p></article>
+      <article class="market"><span class="market__n">04</span><h3>Energy</h3><p>Pressure pipe, vessels and spools fabricated to AS standards for the energy sector.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ── Mission & Goal ── -->
+<section class="sec sec--soft" data-screen-label="Mission &amp; Goal">
+  <div class="wrap mg-grid">
+    <article class="mg">
+      <span class="label">Our Mission</span>
+      <h3>Outcomes, not just deliverables.</h3>
+      <p>At Priority Construction, our mission is to deliver positive outcomes for clients in the mining, industrial, telecommunications and energy markets. We achieve this by offering a comprehensive range of capabilities and a fully integrated delivery model.</p>
+    </article>
+    <article class="mg">
+      <span class="label">Our Goal</span>
+      <h3>Values that drive our growth.</h3>
+      <p>As a privately owned business, Priority Construction upholds a set of core values that have contributed to our continual growth and success. People, Unity, Agility, Determination and Delivery form the pillars of our operations — guiding our decisions, shaping our culture and ensuring we prioritise our employees and foster collaboration.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ── Work / Carousel ── -->
+<section class="sec" id="work" data-screen-label="Projects">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="label">Our Work</span>
+      <h2>Recent projects &amp; capabilities</h2>
+    </div>
+    <div class="carousel" id="carousel">
+      <div class="carousel__frame" id="frame">
+        <figure class="slide is-active" data-title="Tank farm construction" data-meta="Mine site, WA"><img class="cover" src="../public/img/Pic1.jpg" alt="Tank farm construction with crawler cranes" /></figure>
+        <figure class="slide" data-title="Stainless vessel fabrication" data-meta="Workshop, WA"><img class="cover" src="../public/img/Pic2.jpg" alt="Large stainless steel vessel in workshop" /></figure>
+        <figure class="slide" data-title="Pipe spool fabrication" data-meta="Workshop, WA"><img class="cover" src="../public/img/project1.1.jpg" alt="Welded pipe tee on lifting frame" /></figure>
+        <figure class="slide" data-title="Large-bore pipe &amp; flange spool" data-meta="Workshop, WA"><img class="cover" src="../public/img/project1.2.jpg" alt="Large bore pipe elbow with flange" /></figure>
+        <figure class="slide" data-title="Certified TIG weld — detail" data-meta="Quality"><img class="cover" src="../public/img/Project2.2.jpg" alt="Close-up of precision TIG weld bead" /></figure>
+        <figure class="slide" data-title="Tank welding from access platform" data-meta="WA"><img class="cover" src="../public/img/Project2.3.jpg" alt="Welder working on a tank from suspended access" /></figure>
+        <figure class="slide" data-title="Heavy structural fabrication" data-meta="Workshop, WA"><img class="cover" src="../public/img/Pic5.jpg" alt="Large fabricated box girder in workshop" /></figure>
+        <figure class="slide" data-title="Pipeline spool lift" data-meta="WA"><img class="cover" src="../public/img/Project3.1.jpg" alt="Crane lifting a pipeline spool" /></figure>
+        <figure class="slide" data-title="Pipeline installation" data-meta="WA"><img class="cover" src="../public/img/Project3.3.jpg" alt="Tradesperson beside a large-diameter pipeline" /></figure>
+        <figure class="slide" data-title="Mine site pipework" data-meta="WA"><img class="cover" src="../public/img/Pic3.jpg" alt="Pipework laid out at a mine site" /></figure>
+        <button class="carousel__arrow prev" id="prev" aria-label="Previous image">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4L3 8l4 4" /></svg>
+        </button>
+        <button class="carousel__arrow next" id="next" aria-label="Next image">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+        </button>
+      </div>
+      <div class="carousel__bar">
+        <div class="carousel__cap">
+          <span class="t" id="capTitle">Tank farm construction</span>
+          <span class="c" id="capCount">01 / 10</span>
+        </div>
+        <div class="carousel__dots" id="dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Tagline ── -->
+<section class="tagline sec--soft" data-screen-label="Culture">
+  <div class="wrap">
+    <span class="label" style="justify-content:center;">Our Culture</span>
+    <p class="tagline__q">"Teamwork makes the dream work."</p>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section class="sec" id="contact" data-screen-label="Contact">
+  <div class="wrap">
+    <div class="sec__head" style="max-width:680px;">
+      <span class="label">Get In Touch</span>
+      <h2>Questions &amp; estimates — let's talk about your next job.</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact__intro">
+        <p class="contact__lead">We would love to hear from you. Whether you have a question about our services, need a quote for your project, or just want to say hello — feel free to reach out.</p>
+        <p class="contact__sub">Priority Construction Engineering Service is ready to assist with all your fabrication, machining, maintenance and industrial engineering needs.</p>
+        <div class="contact__rows">
+          <a class="contact__row" href="tel:+61452069866"><span class="k">Call us</span><span class="v">(+61) 452 069 866</span></a>
+          <a class="contact__row" href="mailto:shunda@priorityconst.com.au"><span class="k">Email us</span><span class="v">shunda@priorityconst.com.au</span></a>
+          <div class="contact__row"><span class="k">Location</span><span class="v">Western Australia</span></div>
+          <div class="contact__row"><span class="k">Hours</span><span class="v">Mon–Fri · 7am – 5pm</span></div>
+        </div>
+      </div>
+      <form class="contact__form" id="contactForm" novalidate>
+        <h3 class="form__title">Send us a message</h3>
+        <p class="form__note">Fill out the form below and we'll get back to you promptly.</p>
+        <div class="field-row">
+          <label class="field"><span>Name</span><input type="text" name="name" placeholder="Your name" required /></label>
+          <label class="field"><span>Phone</span><input type="tel" name="phone" placeholder="Your phone" /></label>
+        </div>
+        <label class="field"><span>Email</span><input type="email" name="email" placeholder="you@email.com" required /></label>
+        <label class="field"><span>How can we help?</span><textarea name="message" rows="4" placeholder="Tell us about your project or question…" required></textarea></label>
+        <button type="submit" class="btn" style="width:100%;justify-content:center;">Send Message
+          <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="#1C1813" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+        </button>
+        <p class="form__ok" id="formOk" hidden>Thanks — your message is ready to send. We'll be in touch shortly.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="mark" href="#" aria-label="Priority Construction Pty Ltd home">
+          <img class="mark__glyph" src="../public/img/logo-mark.png" alt="" />
+          <img src="../public/img/logo-wordmark.png" alt="Priority Construction Pty Ltd" style="height:13px;width:auto;" />
+        </a>
+        <p class="footer__blurb">Top boilermaker &amp; welder supply, proudly serving sites across Western Australia.</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4>Company</h4>
+          <div>Home</div><div>Services</div><div>About</div><div>Projects</div>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <div>Western Australia</div><div>(+61) 452 069 866</div><div>shunda@priorityconst.com.au</div><div>Mon–Fri 7am – 5pm</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__copy">
+      <span>© Priority Construction Pty Ltd 2026</span>
+      <span class="gold">Teamwork Makes The Dream Work</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var frame = document.getElementById('frame');
+  var slides = Array.prototype.slice.call(frame.querySelectorAll('.slide'));
+  var dotsWrap = document.getElementById('dots');
+  var capTitle = document.getElementById('capTitle');
+  var capCount = document.getElementById('capCount');
+  var n = slides.length, i = 0, timer = null;
+
+  function pad(x) { return (x < 10 ? '0' : '') + x; }
+
+  slides.forEach(function (s, idx) {
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', 'Go to image ' + (idx + 1));
+    b.addEventListener('click', function () { go(idx); reset(); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function go(idx) {
+    i = (idx + n) % n;
+    slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
+    dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); });
+    capTitle.innerHTML = slides[i].getAttribute('data-title');
+    capCount.textContent = pad(i + 1) + ' / ' + pad(n);
+  }
+  function reset() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(function () { go(i + 1); }, 6000);
+  }
+
+  document.getElementById('prev').addEventListener('click', function () { go(i - 1); reset(); });
+  document.getElementById('next').addEventListener('click', function () { go(i + 1); reset(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { go(i - 1); reset(); }
+    else if (e.key === 'ArrowRight') { go(i + 1); reset(); }
+  });
+  var carousel = document.getElementById('carousel');
+  carousel.addEventListener('mouseenter', function () { if (timer) clearInterval(timer); });
+  carousel.addEventListener('mouseleave', reset);
+
+  go(0);
+  reset();
+})();
+</script>
+
+<script>
+(function () {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+  var ok = document.getElementById('formOk');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    if (ok) ok.hidden = false;
+    form.querySelector('button[type="submit"]').textContent = 'Message ready ✓';
+  });
+})();
+</script>
+
+<script>
+/* Mobile navigation */
+(function () {
+  var header = document.querySelector('.header');
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('primaryNav');
+  if (!header || !toggle || !nav) return;
+  function close() { header.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open menu'); }
+  toggle.addEventListener('click', function () {
+    var open = header.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  nav.addEventListener('click', function (e) { if (e.target.closest('a')) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1000) close(); });
+})();
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#1C1813" />
+    <g transform="translate(50,50)">
+      <path d="M-18 12 L0 -20 L18 12 Z" fill="none" stroke="#C9A227" stroke-width="3.2" stroke-linejoin="round" />
+      <path d="M-9 12 L0 -4 L9 12" fill="none" stroke="#C9A227" stroke-width="3.2" stroke-linejoin="round" />
+    </g>
+  </svg>
+</template>
+
+</body>
+</html>
